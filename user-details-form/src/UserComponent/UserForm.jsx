@@ -1,9 +1,11 @@
-import React ,{useState} from 'react';
+import React ,{useState, useRef, useEffect} from 'react';
 import './UserForm.css';
 export default function UserForm() {
 
     const [ openForm , setOpenForm ] = useState(false);
     const [ username , setUsername ] = useState('');
+    const formRef = useRef(null);
+
     const handleSubmit =(event)=>{
       event.preventDefault();
 
@@ -25,14 +27,26 @@ export default function UserForm() {
       if(inputDate>today){
         alert('Invalid date of birth. Date of birth cannot be in the future.')
       }
-
     }
+
+    const handleOutside =(event)=>{
+      if(formRef.current && !formRef.current.contains(event.target)){
+        setOpenForm(false);
+      };
+    }
+    useEffect(()=>{
+      document.addEventListener('mousedown',handleOutside)
+        return ()=>{
+          document.removeEventListener('mousedown',handleOutside);
+        }      
+    },[formRef])
+   
   return (
     <div className="modal">
         <h1>User Details Modal</h1>
-        <button onClick={(e)=>setOpenForm(true)} className="openbtn">Open Form</button>
+        <button onClick={()=>setOpenForm(true)} className="openbtn">Open Form</button>
         { openForm && 
-        <form className='modal-content' onSubmit={handleSubmit}>
+        <form ref={formRef} className='modal-content' onSubmit={handleSubmit}>
           <h2>Fill Details</h2>
             <label htmlFor="username"><b>Username</b></label>
               <input type="text" id='username' name='username' required  />
