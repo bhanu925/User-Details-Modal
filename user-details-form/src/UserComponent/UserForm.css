@@ -4,12 +4,19 @@
     align-items:center;
     flex-direction: column;
 }
+
+.heading{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
 .modal-content h2{
     display:flex;
     justify-content:center;
 }
 
-.modal .openbtn{
+.heading .openbtn{
     background-color:rgb(58, 93, 197);
     border: transparent;
     border-radius:4px;

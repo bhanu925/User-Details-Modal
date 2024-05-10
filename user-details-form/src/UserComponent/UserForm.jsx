@@ -42,10 +42,14 @@ export default function UserForm() {
     },[formRef])
    
   return (
-    <div className="modal">
-        <h1>User Details Modal</h1>
+    <>  <div className='heading'>
+         <h1>User Details Modal</h1>
         <button onClick={()=>setOpenForm(true)} className="openbtn">Open Form</button>
+    </div>
+       
+        <div className="modal">
         { openForm && 
+          
         <form ref={formRef} className='modal-content' onSubmit={handleSubmit}>
           <h2>Fill Details</h2>
             <label htmlFor="username"><b>Username</b></label>
@@ -61,6 +65,7 @@ export default function UserForm() {
             </div>   
         </form>}
     </div>
+    </>
   )
 }
 
