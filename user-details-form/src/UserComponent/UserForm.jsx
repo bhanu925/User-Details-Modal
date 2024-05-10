@@ -47,10 +47,10 @@ export default function UserForm() {
         <button onClick={()=>setOpenForm(true)} className="openbtn">Open Form</button>
     </div>
        
-        <div ref={formRef} className="modal">
+        <div className="modal">
         { openForm && 
           
-        <form  className='modal-content' onSubmit={handleSubmit}>
+        <form ref={formRef} className='modal-content' onSubmit={handleSubmit}>
           <h2>Fill Details</h2>
             <label htmlFor="username"><b>Username</b></label>
               <input type="text" id='username' name='username' required  />
