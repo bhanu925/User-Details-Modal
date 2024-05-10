@@ -4,12 +4,13 @@ export default function UserForm() {
 
     const [ openForm , setOpenForm ] = useState(false);
     const [ username , setUsername ] = useState('');
+    const [ email , setEmail ] = useState('');
     const formRef = useRef(null);
 
     const handleSubmit =(event)=>{
       event.preventDefault();
 
-      const email = event.target.elements.email.value;
+      // const email = event.target.elements.email.value;
       const phone = event.target.elements.phone.value;
       const dob = event.target.elements.date.value;
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;      
@@ -47,15 +48,14 @@ export default function UserForm() {
         <button onClick={()=>setOpenForm(true)} className="openbtn">Open Form</button>
     </div>
        
-        <div className="modal">
-        { openForm && 
+    { openForm && <div className="modal">      
           
-        <form ref={formRef} className='modal-content' onSubmit={handleSubmit}>
+        <form  ref={formRef} className='modal-content' onSubmit={handleSubmit}>
           <h2>Fill Details</h2>
             <label htmlFor="username"><b>Username</b></label>
               <input type="text" id='username' name='username' required  />
             <label htmlFor="email"><b>Email Address</b></label>
-              <input type="text" id="email" name='email' value={username} onChange={(e)=>setUsername(e.target.value)} title={`Please include @ in email address. @${username} is missing an @.`} required pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' />
+              <input type="text" id="email" name='email' value={email} onChange={(e)=>setEmail(e.target.value)} title={`Please include @ in email address. @${email} is missing an @.`} required pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' />
             <label htmlFor="phone"><b>Phone Number</b></label>
               <input type="text" id="phone" name='phone' required />
             <label htmlFor="dob"><b>Date of Birth</b></label>
@@ -63,8 +63,8 @@ export default function UserForm() {
             <div class="submit-container">
             <button type="submit" className='submit-button'>Submit</button>
             </div>   
-        </form>}
-    </div>
+        </form>
+    </div>}
     </>
   )
 }
